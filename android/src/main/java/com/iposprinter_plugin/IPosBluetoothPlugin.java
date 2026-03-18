@@ -45,7 +45,6 @@ import io.flutter.plugin.common.EventChannel.StreamHandler;
 import io.flutter.plugin.common.MethodCall;
 import io.flutter.plugin.common.MethodChannel;
 import io.flutter.plugin.common.MethodChannel.Result;
-import io.flutter.plugin.common.PluginRegistry;
 
 
 public class IPosBluetoothPlugin implements FlutterPlugin,
@@ -136,15 +135,6 @@ public class IPosBluetoothPlugin implements FlutterPlugin,
 
 
 
-    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN_MR2)
-    public static void registerWith(PluginRegistry.Registrar registrar) {
-        final IPosBluetoothPlugin instance = new IPosBluetoothPlugin();
-        //registrar.addRequestPermissionsResultListener(instance);
-        Activity activity = registrar.activity();
-        Application application = null;
-        instance.setup(registrar.messenger(), application, activity, registrar, null);
-    }
-
     public IPosBluetoothPlugin() {
     }
 
@@ -153,7 +143,6 @@ public class IPosBluetoothPlugin implements FlutterPlugin,
     private void setup(final BinaryMessenger messenger,
                        final Application application,
                        final Activity activity,
-                       final PluginRegistry.Registrar registrar,
                        final ActivityPluginBinding activityBinding) {
         synchronized (initializationLock) {
             io.flutter.Log.i(TAG, "setup");
@@ -903,7 +892,6 @@ public class IPosBluetoothPlugin implements FlutterPlugin,
             pluginBinding.getBinaryMessenger(),
             (Application) pluginBinding.getApplicationContext(),
             activityBinding.getActivity(),
-            null,
             activityBinding
         );
     }

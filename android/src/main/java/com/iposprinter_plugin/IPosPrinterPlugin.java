@@ -30,8 +30,6 @@ import io.flutter.plugin.common.EventChannel;
 import io.flutter.plugin.common.MethodCall;
 import io.flutter.plugin.common.MethodChannel;
 import io.flutter.plugin.common.MethodChannel.MethodCallHandler;
-import io.flutter.plugin.common.PluginRegistry;
-import io.flutter.plugin.common.PluginRegistry.Registrar;
 
 /**
  * PrintingPlugin
@@ -81,21 +79,12 @@ public class IPosPrinterPlugin implements FlutterPlugin, MethodCallHandler, Acti
   private final int MSG_CURRENT_TASK_PRINT_COMPLETE = 10;
 
 
-  public static void registerWith(Registrar registrar) {
-    final IPosPrinterPlugin instance = new IPosPrinterPlugin();
-    //registrar.addRequestPermissionsResultListener(instance);
-    Activity activity = registrar.activity();
-    Application application = null;
-    instance.setup(registrar.messenger(), application, activity, registrar, null);
-  }
-
   public IPosPrinterPlugin() {
   }
 
   private void setup(final BinaryMessenger messenger,
                      final Application application,
                      final Activity activity,
-                     final PluginRegistry.Registrar registrar,
                      final ActivityPluginBinding activityBinding) {
     synchronized (initializationLock) {
       Log.i(TAG, "setup");
@@ -488,7 +477,6 @@ public class IPosPrinterPlugin implements FlutterPlugin, MethodCallHandler, Acti
             pluginBinding.getBinaryMessenger(),
             (Application) pluginBinding.getApplicationContext(),
             activityBinding.getActivity(),
-            null,
             activityBinding);
   }
 

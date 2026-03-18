@@ -5,7 +5,7 @@ import 'dart:async';
 
 import 'package:flutter/services.dart';
 import 'package:iposprinter/iposprinter.dart';
-import 'package:iposprinter_example/testPrint.dart';
+// import 'package:iposprinter_example/testPrint.dart';
 
 void main() {
   runApp(const MyApp());
@@ -47,8 +47,7 @@ class _HomeWidgetState extends State<HomeWidget> {
 
   Future<Uint8List> getImageFileFromAssets() async {
     ByteData bytes = await rootBundle.load("assets/logo2.jpg");
-    return await bytes.buffer
-        .asUint8List(bytes.offsetInBytes, bytes.lengthInBytes);
+    return bytes.buffer.asUint8List(bytes.offsetInBytes, bytes.lengthInBytes);
   }
 
   // Platform messages are asynchronous, so we initialize in an async method.
@@ -177,10 +176,9 @@ class _HomeWidgetState extends State<HomeWidget> {
                                               child: Text(
                                             error.message ??
                                                 "Error from printer",
-                                            style: Theme.of(context)
-                                                .textTheme
-                                                .bodyText2!
-                                                .copyWith(color: Colors.white),
+                                            // style: Theme.of(context)
+                                            //     .textTheme
+                                            //     .copyWith(color: Colors.white),
                                           )),
                                           TextButton(
                                               onPressed: () {
@@ -209,10 +207,10 @@ class _HomeWidgetState extends State<HomeWidget> {
                                           Expanded(
                                               child: Text(
                                             "Error Printing Data",
-                                            style: Theme.of(context)
-                                                .textTheme
-                                                .bodyText2!
-                                                .copyWith(color: Colors.white),
+                                            // style: Theme.of(context)
+                                            //     .textTheme
+                                            //     .bodyText2!
+                                            //     .copyWith(color: Colors.white),
                                           )),
                                           TextButton(
                                               onPressed: () {
